@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    cursor: none;
+}
+
+canvas {
+    display: block;
+}
+
+.health-bar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 200px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid #fff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.health-bar span {
+    display: block;
+    height: 100%;
+    background: linear-gradient(to right, #ff0000, #ff6b6b);
+    transition: width 0.3s ease;
+    border-radius: 8px;
+}
+
+.game-over-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #0077FF;
+    border-radius: 10px;
+    padding: 30px;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+    z-index: 1000;
+    animation: modalGlow 2s infinite alternate;
+}
+
+.game-over-modal h2 {
+    color: #ff0000;
+    font-size: 36px;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+.game-over-modal button {
+    background: linear-gradient(to bottom, #1a1a1a, #000);
+    color: #0077FF;
+    border: 2px solid #0057bb;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.game-over-modal button:hover {
+    background: #ffffff;
+    color: #000;
+    box-shadow: 0 0 15px rgba(0, 119, 255, 0.5);
+}
+
+@keyframes modalGlow {
+    from {
+        box-shadow: 0 0 20px rgba(0, 119, 255, 0.5);
+    }
+
+    to {
+        box-shadow: 0 0 30px rgba(0, 119, 255, 0.5);
+    }
+}

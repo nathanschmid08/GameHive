@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Shooter Game</title>
+</head>
+<body>
+  <div class="health-bar">
+    <span id="player-health" style="width: 100%;"></span>
+  </div>
+  <div id="gameOverModal" class="game-over-modal">
+    <h2>Game Over</h2>
+    <p>Your mission has failed, commander!</p>
+    <button onclick="restartGame()">Try Again</button>
+  </div>
+  <canvas id="gameCanvas"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
