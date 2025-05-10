@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bike Game Demo</title>
+  <style>
+    body {
+      margin: 0;
+      background: #87CEEB; /* Himmelblau */
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+
+  <script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Bike properties
+    const bike = {
+      x: 100,
+      y: canvas.height - 150,
+      width: 50,
+      height: 30,
+      speed: 0,
+      gravity: 0.5,
+      lift: -15,
+      velocityY: 0
+    };
+
+    // Ground properties
+    const groundHeight = 100;
+
+    // Controls
+    const keys = {
+      ArrowUp: false,
+      ArrowRight: false,
+      ArrowLeft: false
+    };
+
+    window.addEventListener('keydown', (e) => {
+      if (keys.hasOwnProperty(e.key)) keys[e.key] = true;
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (keys.hasOwnProperty(e.key)) keys[e.key] = false;
+    });
+
+    function drawBike() {
+      ctx.fillStyle = 'red';
+      ctx.fillRect(bike.x, bike.y, bike.width, bike.height);
+
+      // Wheels
+      ctx.beginPath();
+      ctx.arc(bike.x + 10, bike.y + bike.height, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'black';
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(bike.x + bike.width - 10, bike.y + bike.height, 10, 0, Math.PI * 2);
+      ctx.fillStyle = 'black';
+      ctx.fill();
+    }
+
+    function drawGround() {
+      ctx.fillStyle = 'green';
+      ctx.fillRect(0, canvas.height - groundHeight, canvas.width, groundHeight);
+    }
+
+    function updateBike() {
+      // Apply gravity
+      bike.velocityY += bike.gravity;
+      bike.y += bike.velocityY;
+
+      // Prevent falling below ground
+      if (bike.y + bike.height > canvas.height - groundHeight) {
+        bike.y = canvas.height - groundHeight - bike.height;
+        bike.velocityY = 0;
+      }
+
+      // Horizontal movement
+      if (keys.ArrowRight) bike.x += 5;
+      if (keys.ArrowLeft) bike.x -= 5;
+
+      // Jump
+      if (keys.ArrowUp && bike.y + bike.height === canvas.height - groundHeight) {
+        bike.velocityY = bike.lift;
+      }
+    }
+
+    function gameLoop() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      drawGround();
+      drawBike();
+      updateBike();
+
+      requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+  </script>
+</body>
+</html>

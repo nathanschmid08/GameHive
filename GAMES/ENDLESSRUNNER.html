@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endless Runner</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
+        }
+
+        #gameArea {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(to top, #4CAF50, #87CEEB);
+        }
+
+        #ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background-color: #654321;
+            border-top: 5px solid #3A2F2F;
+        }
+
+        #player {
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+            background-color: yellow;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #FFD700;
+        }
+
+        .obstacle {
+            position: absolute;
+            bottom: 100px;
+            right: -60px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border-radius: 10px;
+            animation: moveObstacle 3s linear infinite;
+        }
+
+        @keyframes moveObstacle {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-150vw);
+            }
+        }
+
+        @keyframes jump {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-150px);
+            }
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 24px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameArea">
+        <div id="score">Score: 0</div>
+        <div id="player"></div>
+        <div id="ground"></div>
+    </div>
+
+    <script>
+        const player = document.getElementById("player");
+        const gameArea = document.getElementById("gameArea");
+        const scoreDisplay = document.getElementById("score");
+        let jumping = false;
+        let score = 0;
+
+        // Handle Jump
+        document.addEventListener("keydown", (e) => {
+            if (e.code === "Space" && !jumping) {
+                jumping = true;
+                player.style.animation = "jump 0.6s ease-in-out";
+                setTimeout(() => {
+                    player.style.animation = "";
+                    jumping = false;
+                }, 600);
+            }
+        });
+
+        // Spawn Obstacles
+        function createObstacle() {
+            const obstacle = document.createElement("div");
+            obstacle.classList.add("obstacle");
+            gameArea.appendChild(obstacle);
+
+            const collisionCheck = setInterval(() => {
+                const playerRect = player.getBoundingClientRect();
+                const obstacleRect = obstacle.getBoundingClientRect();
+
+                if (
+                    playerRect.left < obstacleRect.right &&
+                    playerRect.right > obstacleRect.left &&
+                    playerRect.bottom > obstacleRect.top &&
+                    playerRect.top < obstacleRect.bottom
+                ) {
+                    alert(`Game Over! Final Score: ${score}`);
+                    location.reload(); // Restart the game
+                }
+            }, 50);
+
+            obstacle.addEventListener("animationend", () => {
+                clearInterval(collisionCheck);
+                obstacle.remove();
+            });
+        }
+
+        // Update Score
+        function updateScore() {
+            score++;
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
+
+        // Game Loop
+        setInterval(createObstacle, 2000); // Spawn obstacles every 2 seconds
+        setInterval(updateScore, 1000); // Update score every second
+    </script>
+</body>
+</html>

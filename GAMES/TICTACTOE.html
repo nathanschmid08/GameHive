@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #282c34;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            grid-gap: 10px;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .cell {
+            width: 120px;
+            height: 120px;
+            background-color: #444;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: #00d1b2;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .cell:hover {
+            background-color: #555;
+        }
+        .cell.taken {
+            cursor: not-allowed;
+            color: #ff6b6b;
+        }
+        #winner {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #00d1b2;
+        }
+        #reset {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #00d1b2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        #reset:hover {
+            background-color: #00a992;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+    <div id="board"></div>
+    <div id="winner"></div>
+    <button id="reset">Neustart</button>
+
+    <script>
+        const board = document.getElementById('board');
+        const winnerDisplay = document.getElementById('winner');
+        const resetButton = document.getElementById('reset');
+        let currentPlayer = 'X'; // Player starts
+        let gameActive = true;
+        let boardState = Array(9).fill(null);
+
+        // Create the board
+        function createBoard() {
+            board.innerHTML = '';
+            boardState.forEach((cell, index) => {
+                const cellElement = document.createElement('div');
+                cellElement.classList.add('cell');
+                cellElement.dataset.index = index;
+                cellElement.addEventListener('click', handlePlayerClick);
+                board.appendChild(cellElement);
+            });
+        }
+
+        // Handle player's move
+        function handlePlayerClick(event) {
+            const cellIndex = event.target.dataset.index;
+            if (boardState[cellIndex] || !gameActive) return;
+
+            makeMove(cellIndex, 'X');
+            if (checkWinner()) return;
+            if (boardState.every(cell => cell)) return; // Check for draw
+
+            setTimeout(computerMove, 500); // Delay for computer's move
+        }
+
+        // Make a move
+        function makeMove(index, player) {
+            boardState[index] = player;
+            const cell = document.querySelector(`.cell[data-index="${index}"]`);
+            cell.textContent = player;
+            cell.classList.add('taken');
+
+            if (checkWinner()) {
+                winnerDisplay.textContent = `${player === 'X' ? 'Du' : 'Computer'} hast gewonnen!`;
+                gameActive = false;
+            } else if (boardState.every(cell => cell)) {
+                winnerDisplay.textContent = 'Unentschieden!';
+                gameActive = false;
+            }
+        }
+
+        // Computer's move
+        function computerMove() {
+            if (!gameActive) return;
+            let emptyCells = boardState.map((cell, index) => cell === null ? index : null).filter(index => index !== null);
+            let randomIndex = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            makeMove(randomIndex, 'O');
+        }
+
+        // Check for a winner
+        function checkWinner() {
+            const winningCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6],
+            ];
+            return winningCombinations.some(combination => {
+                const [a, b, c] = combination;
+                return boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c];
+            });
+        }
+
+        // Reset the game
+        resetButton.addEventListener('click', () => {
+            boardState = Array(9).fill(null);
+            currentPlayer = 'X';
+            gameActive = true;
+            winnerDisplay.textContent = '';
+            createBoard();
+        });
+
+        // Initialize the game
+        createBoard();
+    </script>
+</body>
+</html>
