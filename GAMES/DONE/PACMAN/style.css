@@ -1,0 +1,37 @@
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #000;
+    color: white;
+    font-family: 'Press Start 2P', Arial, sans-serif;
+    min-height: 100vh;
+    padding: 20px;
+}
+#gameContainer {
+    position: relative;
+    margin: 20px;
+}
+#gameStats {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 18px;
+    border: 2px solid #00f;
+}
+canvas {
+    border: 4px solid #00f;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00f;
+    background-color: #000;
+}
+.glow {
+    animation: glow 1s ease-in-out infinite alternate;
+}
+@keyframes glow {
+    from { box-shadow: 0 0 20px #00f; }
+    to { box-shadow: 0 0 30px #00f, 0 0 40px #0ff; }
+}

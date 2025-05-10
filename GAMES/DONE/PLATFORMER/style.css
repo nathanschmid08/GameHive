@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #2C3E50;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.game-container {
+    position: relative;
+}
+
+canvas {
+    display: block;
+    background: linear-gradient(to bottom, #87CEEB, #4CA1AF);
+    border: 4px solid #2C3E50;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    display: flex;
+    gap: 20px;
+}
+
+.controls {
+    color: white;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.health-bar {
+    height: 20px;
+    width: 150px;
+    background: #e74c3c;
+    border: 2px solid white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.health-fill {
+    height: 100%;
+    background: #2ecc71;
+    transition: width 0.3s;
+}

@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #1a4721;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background: #87CEEB;
+    border: 4px solid #2c5530;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.game-info {
+    color: white;
+    font-size: 24px;
+    margin: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.controls {
+    color: white;
+    margin-top: 10px;
+    font-size: 16px;
+    text-align: center;
+}

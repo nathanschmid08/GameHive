@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realistisches Snake Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <canvas id="gameCanvas"></canvas>
+        <div id="scoreBoard">
+            <p>Punkte: <span id="score">0</span></p>
+            <p>Rekord: <span id="highScore">0</span></p>
+        </div>
+        <div class="game-over" id="gameOver">
+            <h2>Game Over!</h2>
+            <p>Deine Punktzahl: <span id="finalScore">0</span></p>
+            <p>Rekord: <span id="finalHighScore">0</span></p>
+            <button onclick="restartGame()">Neu starten</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

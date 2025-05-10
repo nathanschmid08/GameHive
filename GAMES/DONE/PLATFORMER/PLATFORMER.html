@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Platformer Deluxe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div class="hud">
+            <div class="health-bar">
+                <div id="healthFill" class="health-fill" style="width: 100%"></div>
+            </div>
+            <div>Coins: <span id="coinCount">0</span></div>
+            <div>Score: <span id="score">0</span></div>
+        </div>
+    </div>
+    <div class="controls">
+        ← → zum Bewegen | LEERTASTE zum Springen | SHIFT zum Sprinten | R zum Neustarten
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
