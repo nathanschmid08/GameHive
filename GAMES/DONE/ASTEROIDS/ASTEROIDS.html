@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verbessertes Asteroids Spiel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="starfieldCanvas" class="starfield"></canvas>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="game-ui">
+            <div id="score">SCORE: 0</div>
+            <div id="level">LEVEL: 1</div>
+            <div class="lives-indicator" id="livesIndicator">SHIPS: </div>
+        </div>
+        
+        <div class="controls">
+            ← → : ROTATE | ↑ : THRUST | SPACE : FIRE | Z : HYPERSPACE
+        </div>
+        
+        <div class="game-over" id="gameOverScreen">
+            <h2>GAME OVER</h2>
+            <div id="finalScore">SCORE: 0</div>
+            <div id="highScore">HIGH SCORE: 0</div>
+            <button id="restartButton">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
