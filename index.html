@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameHive</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600;800&display=swap");
+
+      :root {
+        --bg-gradient: linear-gradient(135deg, #0f0f1b 0%, #1a1a2e 100%);
+        --card-gradient: linear-gradient(145deg, #272741 0%, #1d1d30 100%);
+        --accent-color: #3c6cff;
+        --accent-gradient: linear-gradient(90deg, #3c6cff 0%, #8a48ff 100%);
+        --accent-shadow: 0 0 15px rgba(60, 108, 255, 0.5);
+        --text-color: #ffffff;
+        --text-secondary: rgba(255, 255, 255, 0.7);
+        --card-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        --border-radius: 16px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg-gradient);
+        color: var(--text-color);
+        font-family: "Exo 2", sans-serif;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 4%;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Background Animation Elements */
+      .bg-elements {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .bg-element {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.15;
+        z-index: -1;
+      }
+
+      .bg-element-1 {
+        background: #3c6cff;
+        width: 800px;
+        height: 800px;
+        top: -300px;
+        left: -200px;
+        animation: float 25s infinite alternate ease-in-out;
+      }
+
+      .bg-element-2 {
+        background: #8a48ff;
+        width: 600px;
+        height: 600px;
+        bottom: -200px;
+        right: -100px;
+        animation: float 30s infinite alternate-reverse ease-in-out;
+      }
+
+      .bg-element-3 {
+        background: #0099ff;
+        width: 400px;
+        height: 400px;
+        top: 50%;
+        right: 25%;
+        animation: float 20s infinite alternate ease-in-out;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(100px, 50px);
+        }
+      }
+
+      /* Header Styles */
+      header {
+        padding: 30px 0;
+        position: relative;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 900;
+        text-decoration: none;
+        color: var(--text-color);
+        display: flex;
+        align-items: center;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: var(--accent-shadow);
+        letter-spacing: 1px;
+      }
+
+      .logo svg {
+        height: 2.5rem;
+        width: 2.5rem;
+        margin-right: 0.5rem;
+        filter: drop-shadow(0 0 5px rgba(60, 108, 255, 0.7));
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2.5rem;
+      }
+
+      nav ul li a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-weight: 600;
+        letter-spacing: 1px;
+        font-size: 1.1rem;
+        position: relative;
+        transition: all 0.3s;
+        text-transform: uppercase;
+      }
+
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: var(--accent-gradient);
+        transition: all 0.3s ease-out;
+        border-radius: 3px;
+        box-shadow: var(--accent-shadow);
+      }
+
+      nav ul li a:hover {
+        color: #3c6cff;
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      .burger-menu {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 80px 0 40px;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 5rem;
+        font-weight: 900;
+        margin-bottom: 1rem;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: 2px;
+        text-shadow: var(--accent-shadow);
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 15px rgba(60, 108, 255, 0.5));
+        }
+        50% {
+          filter: drop-shadow(0 0 25px rgba(60, 108, 255, 0.8));
+        }
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        max-width: 700px;
+        margin: 0 auto 60px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
+      }
+
+      /* Games Section */
+      .games-section {
+        padding: 20px 0 100px;
+      }
+
+      .section-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 50px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        position: relative;
+        display: inline-block;
+        margin-left: 20px;
+      }
+
+      .section-title::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 30px;
+        background: var(--accent-gradient);
+        border-radius: 3px;
+      }
+
+      .game-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 40px;
+        perspective: 1000px;
+      }
+
+      .game-card {
+        background: var(--card-gradient);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        position: relative;
+        transform-style: preserve-3d;
+        z-index: 1;
+      }
+
+      .game-card:hover {
+        transform: translateY(-15px) rotateX(5deg);
+        box-shadow: 0 30px 50px rgba(0, 0, 0, 0.6);
+      }
+
+      .game-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: var(--accent-gradient);
+        z-index: 2;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .game-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .game-image-container {
+        height: 220px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .game-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      .game-card:hover .game-image {
+        transform: scale(1.1);
+      }
+
+      .game-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, 0.8) 100%
+        );
+        z-index: 1;
+      }
+
+      .game-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: rgba(60, 108, 255, 0.9);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        z-index: 2;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .game-content {
+        padding: 25px;
+        position: relative;
+      }
+
+      .game-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: 0.5px;
+      }
+
+      .game-description {
+        color: var(--text-secondary);
+        margin-bottom: 25px;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .game-meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 0.9rem;
+      }
+
+      .game-rating {
+        display: flex;
+        align-items: center;
+        color: var(--text-secondary);
+      }
+
+      .game-rating svg {
+        color: #ffd700;
+        margin-right: 5px;
+      }
+
+      .game-category {
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+      }
+
+      .game-category svg {
+        margin-right: 5px;
+      }
+
+      .play-button {
+        background: var(--accent-gradient);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-family: "Exo 2", sans-serif;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        transition: all 0.3s;
+        box-shadow: 0 5px 15px rgba(60, 108, 255, 0.4);
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .play-button svg {
+        margin-right: 8px;
+        transition: transform 0.3s;
+      }
+
+      .play-button:hover {
+        box-shadow: 0 8px 25px rgba(60, 108, 255, 0.6);
+        transform: translateY(-2px);
+      }
+
+      .play-button:hover svg {
+        transform: translateX(3px);
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 1200px) {
+        .game-grid {
+          grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+
+        .hero h1 {
+          font-size: 4rem;
+        }
+      }
+
+      @media (max-width: 900px) {
+        nav ul {
+          gap: 1.5rem;
+        }
+
+        .hero h1 {
+          font-size: 3.5rem;
+        }
+
+        .hero p {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .burger-menu {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 3rem;
+        }
+
+        .game-grid {
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .game-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background Animation Elements -->
+    <div class="bg-elements">
+      <div class="bg-element bg-element-1"></div>
+      <div class="bg-element bg-element-2"></div>
+      <div class="bg-element bg-element-3"></div>
+    </div>
+
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <a href="#" class="logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="5 2 19 12 5 22"></polygon>
+            </svg>
+            GAMEHIVE
+          </a>
+          <nav>
+            <ul class="nav-links">
+              <li><a href="#">DISCOVER</a></li>
+              <li><a href="#">LIBRARY</a></li>
+              <li><a href="#">TOURNAMENTS</a></li>
+              <li><a href="#">PROFILE</a></li>
+            </ul>
+            <button class="burger-menu">☰</button>
+          </nav>
+        </div>
+      </header>
+
+      <section class="hero">
+        <h1>GAMEHIVE</h1>
+        <p>Experience the most iconic games reimagined for your browser</p>
+      </section>
+
+      <section class="games-section">
+        <h2 class="section-title">TRENDING GAMES</h2>
+        <div class="game-grid">
+          <!-- Game Card 1 -->
+          <div class="game-card">
+            <div class="game-image-container">
+              <img
+                src="/api/placeholder/600/320"
+                alt="Cyberpunk Racer"
+                class="game-image"
+              />
+              <div class="game-overlay"></div>
+              <div class="game-badge">HOT</div>
+            </div>
+            <div class="game-content">
+              <h3 class="game-title">CYBERPUNK RACER</h3>
+              <div class="game-meta">
+                <div class="game-rating">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    ></polygon>
+                  </svg>
+                  4.9/5.0
+                </div>
+                <div class="game-category">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path
+                      d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                    ></path>
+                  </svg>
+                  Racing
+                </div>
+              </div>
+              <p class="game-description">
+                Race through neon-lit streets in this futuristic racing game.
+                Push your reflexes to the limit as you dodge obstacles and
+                outrun rivals.
+              </p>
+              <button class="play-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                PLAY NOW
+              </button>
+            </div>
+          </div>
+          <!-- Game Card 2 -->
+          <div class="game-card">
+            <div class="game-image-container">
+              <img
+                src="/api/placeholder/600/320"
+                alt="Space Odyssey"
+                class="game-image"
+              />
+              <div class="game-overlay"></div>
+              <div class="game-badge">NEW</div>
+            </div>
+            <div class="game-content">
+              <h3 class="game-title">SPACE ODYSSEY</h3>
+              <div class="game-meta">
+                <div class="game-rating">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    ></polygon>
+                  </svg>
+                  4.7/5.0
+                </div>
+                <div class="game-category">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path
+                      d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"
+                    ></path>
+                  </svg>
+                  Adventure
+                </div>
+              </div>
+              <p class="game-description">
+                Embark on an epic journey through the cosmos. Discover alien
+                worlds, solve interstellar puzzles, and unravel the mysteries of
+                the universe.
+              </p>
+              <button class="play-button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                PLAY NOW
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
