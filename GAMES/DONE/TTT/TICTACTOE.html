@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Tic Tac Toe</title>
+    <link rel="stylesheet" href="ttt.css">
+</head>
+<body>
+    <div class="side-nav">
+        <h2>Game Settings</h2>
+        
+        <div class="difficulty-section">
+            <label for="difficulty-select">Difficulty Level</label>
+            <select id="difficulty-select">
+                <option value="easy">Easy</option>
+                <option value="medium" selected>Medium</option>
+                <option value="hard">Hard</option>
+                <option value="impossible">Impossible</option>
+            </select>
+        </div>
+        
+        <div class="game-history">
+            <div class="history-title">Game History</div>
+            <div id="history-container"></div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <div class="game-container">
+            <h1>Tic Tac Toe</h1>
+            
+            <div class="score-board">
+                <div class="score player-score">
+                    You
+                    <span id="player-score">0</span>
+                </div>
+                <div class="score computer-score">
+                    Computer
+                    <span id="computer-score">0</span>
+                </div>
+                <div class="score draws-score">
+                    Draws
+                    <span id="draws">0</span>
+                </div>
+            </div>
+            
+            <div class="turn-indicator">
+                Current turn: <span id="current-turn" class="turn-x">You (X)</span>
+            </div>
+            
+            <div id="board"></div>
+            
+            <div id="status"></div>
+            
+            <div class="controls">
+                <button id="reset">New Game</button>
+                <button id="reset-score">Reset Score</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="ttt.js"></script>
+</body>
+</html>

@@ -132,53 +132,6 @@
         filter: drop-shadow(0 0 5px rgba(60, 108, 255, 0.7));
       }
 
-      nav ul {
-        display: flex;
-        list-style: none;
-        gap: 2.5rem;
-      }
-
-      nav ul li a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-weight: 600;
-        letter-spacing: 1px;
-        font-size: 1.1rem;
-        position: relative;
-        transition: all 0.3s;
-        text-transform: uppercase;
-      }
-
-      nav ul li a::after {
-        content: "";
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        height: 3px;
-        width: 0;
-        background: var(--accent-gradient);
-        transition: all 0.3s ease-out;
-        border-radius: 3px;
-        box-shadow: var(--accent-shadow);
-      }
-
-      nav ul li a:hover {
-        color: #3c6cff;
-      }
-
-      nav ul li a:hover::after {
-        width: 100%;
-      }
-
-      .burger-menu {
-        display: none;
-        background: none;
-        border: none;
-        color: var(--text-color);
-        font-size: 1.8rem;
-        cursor: pointer;
-      }
-
       /* Hero Section */
       .hero {
         padding: 80px 0 40px;
@@ -502,15 +455,6 @@
             </svg>
             GAMEHIVE
           </a>
-          <nav>
-            <ul class="nav-links">
-              <li><a href="#">DISCOVER</a></li>
-              <li><a href="#">LIBRARY</a></li>
-              <li><a href="#">TOURNAMENTS</a></li>
-              <li><a href="#">PROFILE</a></li>
-            </ul>
-            <button class="burger-menu">☰</button>
-          </nav>
         </div>
       </header>
 
