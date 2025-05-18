@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breakout</title>
+    <link rel="stylesheet" href="breakout.css">
+</head>
+<body>
+    <div class="game-container">
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div class="ui-overlay">
+            <div class="game-title">BREAKOUT</div>
+            <div class="game-stats">
+                <div class="score">Score: 0</div>
+                <div class="lives">Lives: <span class="heart">❤️❤️❤️</span></div>
+            </div>
+            <button class="pause-btn"></button>
+            <div class="controls-info">Use ← → arrow keys to move the paddle</div>
+        </div>
+        <div class="game-over">
+            <h2>GAME OVER</h2>
+            <p>Your score: <span class="final-score">0</span></p>
+            <button class="restart-btn">Play Again</button>
+        </div>
+        <div class="level-complete">
+            <h2>LEVEL COMPLETE!</h2>
+            <p>Your score: <span class="win-score">0</span></p>
+            <button class="restart-btn">Play Again</button>
+        </div>
+    </div>
+
+    <script src="breakout.js"></script>
+</body>
+</html>
