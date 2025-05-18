@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Tetris</title>
+    <link rel="stylesheet" href="tetris.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-sidebar">
+            <h1 class="game-title">TETRIS</h1>
+            
+            <div class="game-info">
+                <div class="game-score">Score: <span id="score">0</span></div>
+                <div class="game-level">Level: <span id="level">1</span></div>
+                <div class="game-lines">Lines: <span id="lines">0</span></div>
+            </div>
+            
+            <div class="next-piece-container">
+                <div class="next-piece-title">Next Piece</div>
+                <canvas id="nextPieceCanvas" width="120" height="120"></canvas>
+            </div>
+            
+            <div class="controls">
+                <div class="controls-title">Controls</div>
+                <div class="control-key">
+                    <span>Move Left</span>
+                    <span class="key">←</span>
+                </div>
+                <div class="control-key">
+                    <span>Move Right</span>
+                    <span class="key">→</span>
+                </div>
+                <div class="control-key">
+                    <span>Rotate</span>
+                    <span class="key">↑</span>
+                </div>
+                <div class="control-key">
+                    <span>Drop</span>
+                    <span class="key">↓</span>
+                </div>
+                <div class="control-key">
+                    <span>Hard Drop</span>
+                    <span class="key">Space</span>
+                </div>
+            </div>
+            
+            <div class="button-container">
+                <button id="pauseBtn">Pause</button>
+                <button id="restartBtn">Restart</button>
+            </div>
+        </div>
+        
+        <canvas id="tetrisCanvas" width="300" height="600"></canvas>
+    </div>
+    
+    <div class="game-over-overlay" id="gameOverOverlay">
+        <div class="game-over-text">GAME OVER</div>
+        <div class="final-score">Final Score: <span id="finalScore">0</span></div>
+        <button class="play-again-btn" id="playAgainBtn">Play Again</button>
+    </div>
+
+    <script src="tetris.js"></script>
+</body>
+</html>
