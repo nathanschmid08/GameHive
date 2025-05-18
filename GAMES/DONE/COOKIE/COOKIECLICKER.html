@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cookie Clicker</title>
+<link rel="stylesheet" href="clicker.css">
+</head>
+<body>
+<div class="container">
+  <h1>Cookie Clicker</h1>
+  
+  <div class="cookie-area">
+    <button class="cookie-button" id="cookie-button">
+      <div class="cookie" id="cookie">
+      </div>
+    </button>
+    <p class="cookie-count">Cookies: <span id="cookie-count">0</span></p>
+    <p>Pro Klick: <span id="cookies-per-click">1</span> Cookie(s)</p>
+  </div>
+  
+  <div class="upgrade-area">
+    <button class="upgrade-button" id="upgrade-button">Upgrade: Mehr Cookies pro Klick</button>
+    <p>Upgrade kostet: <span id="upgrade-cost">10</span> Cookies</p>
+  </div>
+  
+  <div class="autoclicker-area">
+    <button class="upgrade-button" id="autoclicker-button">Kaufe Auto-Clicker</button>
+    <p>Preis: <span id="autoclicker-cost">100</span> Cookies</p>
+    <p>Auto-Clickers: <span id="autoclicker-count">0</span></p>
+  </div>
+  
+  <div class="stats">
+    <p>Gesamt produzierte Cookies: <span id="total-cookies">0</span></p>
+    <p>Spielzeit: <span id="play-time">00:00</span></p>
+  </div>
+</div>
+
+<script src="clicker.js"></script>
+</body>
+</html>

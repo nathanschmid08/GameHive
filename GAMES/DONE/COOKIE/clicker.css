@@ -1,0 +1,145 @@
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5e9d6;
+    margin: 0;
+    color: #5c3c10;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff9ed;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+}
+
+.cookie-area {
+    margin-bottom: 20px;
+}
+
+.cookie-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+    padding: 0;
+    margin: 15px 0;
+    outline: none;
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
+.cookie {
+    width: 150px;
+    height: 150px;
+    background-color: #c48a3f;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: inset 0 -3px 0 3px rgba(0, 0, 0, 0.2),
+        0 0 10px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+}
+
+.chocolate-chip {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #3e2009;
+    border-radius: 50%;
+    box-shadow: inset 0 -2px 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.cookie-button:active {
+    transform: scale(0.95);
+}
+
+.cookie-count {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 15px 0;
+    color: #7e5109;
+}
+
+.upgrade-area {
+    margin-top: 20px;
+    border-top: 2px dashed #e0c097;
+    padding-top: 15px;
+}
+
+.upgrade-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    background-color: #8e5e24;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 3px 0 #5c3c10;
+    transition: all 0.2s;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.upgrade-button:hover {
+    background-color: #7d5220;
+}
+
+.upgrade-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #5c3c10;
+}
+
+.upgrade-button[disabled] {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+h1 {
+    font-size: 36px;
+    color: #8e5e24;
+    margin-top: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.stats {
+    font-size: 14px;
+    margin-top: 20px;
+    text-align: left;
+    background-color: #fff0d9;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.cookie-rain {
+    position: fixed;
+    top: -100px;
+    animation: falling linear;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
+.autoclicker-area {
+    margin-top: 15px;
+    border-top: 2px dashed #e0c097;
+    padding-top: 15px;
+}
