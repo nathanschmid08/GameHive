@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slither</title>
+    <link rel="stylesheet" href="slither.css">
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div id="gameUI">
+        <div id="scoreDisplay">Score: 0</div>
+        <div id="gameOver">
+            <h2>Game Over!</h2>
+            <p>Your final score: <span id="finalScore">0</span></p>
+            <button id="restartButton">Play Again</button>
+        </div>
+        <div id="touchControls">
+            <div id="controlsWrapper">
+                <div class="column">
+                    <div class="control-btn" id="upBtn">↑</div>
+                </div>
+                <div class="column">
+                    <div class="control-btn" id="leftBtn">←</div>
+                    <div class="control-btn" id="downBtn">↓</div>
+                    <div class="control-btn" id="rightBtn">→</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="slither.js"></script>
+</body>
+</html>
