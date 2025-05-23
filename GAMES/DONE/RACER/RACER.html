@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Racing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="1000" height="600"></canvas>
+        <div class="ui">
+            <div>Zeit: <span id="time">0.0s</span></div>
+            <div>Geschwindigkeit: <span id="speed">0</span> km/h</div>
+            <div>Runde: <span id="lap">1</span>/3</div>
+            <div>Beste Zeit: <span id="bestTime">--</span></div>
+        </div>
+        <div class="controls">
+            WASD oder Pfeiltasten zum Fahren | SHIFT: Bremse | R: Neustart
+        </div>
+        <div class="game-over" id="gameOver">
+            <h2>Rennen beendet!</h2>
+            <p>Deine Zeit: <span id="finalTime"></span></p>
+            <p>Drücke R für einen Neustart</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
