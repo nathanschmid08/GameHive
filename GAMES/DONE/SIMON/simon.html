@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simon Says - Enhanced</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars"></div>
+
+<button class="sound-toggle" id="soundToggle">🔊</button>
+
+<div class="game-container">
+  <h1>Simon Says</h1>
+  
+  <div class="score-container">
+    <div class="score-item">
+      <div class="score-label">Level</div>
+      <div class="score-value" id="level">1</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Score</div>
+      <div class="score-value" id="score">0</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">Best</div>
+      <div class="score-value" id="bestScore">0</div>
+    </div>
+  </div>
+
+  <div class="difficulty-selector">
+    <button class="difficulty-btn active" data-difficulty="easy">Einfach</button>
+    <button class="difficulty-btn" data-difficulty="medium">Mittel</button>
+    <button class="difficulty-btn" data-difficulty="hard">Schwer</button>
+  </div>
+
+  <div id="simon">
+    <button class="btn green" data-color="green"></button>
+    <button class="btn red" data-color="red"></button>
+    <button class="btn yellow" data-color="yellow"></button>
+    <button class="btn blue" data-color="blue"></button>
+  </div>
+
+  <div class="controls">
+    <button class="control-btn" id="startBtn">Start</button>
+    <button class="control-btn" id="resetBtn">Reset</button>
+  </div>
+
+  <div class="status" id="status">Klicke Start um zu beginnen!</div>
+  
+  <div id="gameOver" class="game-over" style="display: none;">
+    <h3>Spiel vorbei!</h3>
+    <p>Du hast Level <span id="finalLevel"></span> erreicht!</p>
+    <p>Score: <span id="finalScore"></span></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
