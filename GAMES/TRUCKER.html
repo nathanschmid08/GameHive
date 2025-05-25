@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +12,11 @@
             overflow: hidden;
             font-family: Arial, sans-serif;
         }
+
         canvas {
             display: block;
         }
+
         #gameStats {
             position: absolute;
             top: 20px;
@@ -26,6 +29,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="gameStats">
         Speed: <span id="speedometer">0</span> km/h<br>
@@ -90,9 +94,9 @@
 
         // Terrain generation with Perlin noise (simplified version)
         function noise(x) {
-            return Math.sin(x/50) * 30 + 
-                   Math.sin(x/25) * 15 + 
-                   Math.sin(x/12.5) * 7.5;
+            return Math.sin(x / 50) * 30 +
+                Math.sin(x / 25) * 15 +
+                Math.sin(x / 12.5) * 7.5;
         }
 
         class TerrainSegment {
@@ -103,13 +107,13 @@
                 this.type = type;
                 this.friction = type === 'mud' ? 0.7 : 1.0;
                 this.detail = [];
-                
+
                 // Generate terrain detail points
                 const detailPoints = 5;
-                for(let i = 0; i < detailPoints; i++) {
+                for (let i = 0; i < detailPoints; i++) {
                     this.detail.push({
-                        x: x + (width * (i/detailPoints)),
-                        y: y + noise(x + (width * (i/detailPoints))) * 0.3
+                        x: x + (width * (i / detailPoints)),
+                        y: y + noise(x + (width * (i / detailPoints))) * 0.3
                     });
                 }
             }
@@ -121,8 +125,8 @@
                 this.x = x;
                 this.y = y;
                 this.type = type;
-                
-                switch(type) {
+
+                switch (type) {
                     case 'rock':
                         this.width = 30 + Math.random() * 40;
                         this.height = 20 + Math.random() * 30;
@@ -144,9 +148,9 @@
             generateRockPoints() {
                 const points = [];
                 const segments = 8;
-                for(let i = 0; i < segments; i++) {
+                for (let i = 0; i < segments; i++) {
                     const angle = (i / segments) * Math.PI * 2;
-                    const radius = this.width/2 * (0.8 + Math.random() * 0.4);
+                    const radius = this.width / 2 * (0.8 + Math.random() * 0.4);
                     points.push({
                         x: Math.cos(angle) * radius,
                         y: Math.sin(angle) * radius
@@ -158,12 +162,12 @@
             draw(ctx, cameraPosX) {
                 ctx.save();
                 ctx.translate(this.x - cameraPosX, this.y);
-                
-                switch(this.type) {
+
+                switch (this.type) {
                     case 'rock':
                         ctx.beginPath();
                         ctx.moveTo(this.points[0].x, this.points[0].y);
-                        for(let point of this.points) {
+                        for (let point of this.points) {
                             ctx.lineTo(point.x, point.y);
                         }
                         ctx.closePath();
@@ -173,30 +177,30 @@
                         ctx.lineWidth = 2;
                         ctx.stroke();
                         break;
-                        
+
                     case 'log':
                         ctx.rotate(this.rotation);
                         ctx.fillStyle = '#8B4513';
-                        ctx.fillRect(-this.width/2, -this.height/2, this.width, this.height);
+                        ctx.fillRect(-this.width / 2, -this.height / 2, this.width, this.height);
                         // Add wood texture
                         ctx.strokeStyle = '#73370D';
-                        for(let i = 0; i < 5; i++) {
+                        for (let i = 0; i < 5; i++) {
                             ctx.beginPath();
-                            ctx.moveTo(-this.width/2, -this.height/2 + i * this.height/4);
-                            ctx.lineTo(this.width/2, -this.height/2 + i * this.height/4);
+                            ctx.moveTo(-this.width / 2, -this.height / 2 + i * this.height / 4);
+                            ctx.lineTo(this.width / 2, -this.height / 2 + i * this.height / 4);
                             ctx.stroke();
                         }
                         break;
-                        
+
                     case 'mudpit':
                         ctx.fillStyle = '#483C32';
                         ctx.fillRect(0, 0, this.width, this.height);
                         // Add mud texture
                         ctx.fillStyle = '#362F28';
-                        for(let i = 0; i < 10; i++) {
+                        for (let i = 0; i < 10; i++) {
                             ctx.beginPath();
-                            ctx.arc(Math.random() * this.width, Math.random() * this.height, 
-                                  5, 0, Math.PI * 2);
+                            ctx.arc(Math.random() * this.width, Math.random() * this.height,
+                                5, 0, Math.PI * 2);
                             ctx.fill();
                         }
                         break;
@@ -213,23 +217,23 @@
                 let currentX = startX;
                 let currentY = canvas.height - 100;
                 let previousY = currentY;
-                
+
                 for (let i = 0; i < count; i++) {
                     // Generate base terrain using noise
                     currentY = canvas.height - 150 + noise(currentX);
-                    
+
                     // Ensure terrain stays within bounds
                     currentY = Math.min(Math.max(currentY, canvas.height - 400), canvas.height - 50);
-                    
+
                     // Add special terrain features
                     if (Math.random() < 0.05) {
                         // Create jump
                         let jumpHeight = 80 + Math.random() * 120;
                         let jumpLength = 150 + Math.random() * 100;
-                        
+
                         this.segments.push(new TerrainSegment(currentX, currentY - jumpHeight, jumpLength, 'jump'));
                         currentX += jumpLength;
-                        
+
                         // Add obstacle after jump
                         if (Math.random() < 0.7) {
                             this.addObstacle(currentX + 50, currentY);
@@ -238,17 +242,17 @@
                         // Normal terrain segment
                         this.segments.push(new TerrainSegment(currentX, currentY, this.segmentWidth));
                         currentX += this.segmentWidth;
-                        
+
                         // Randomly add obstacles
                         if (Math.random() < 0.03) {
                             this.addObstacle(currentX, currentY);
                         }
                     }
-                    
+
                     previousY = currentY;
                 }
             },
-            
+
             addObstacle(x, y) {
                 const types = ['rock', 'log', 'mudpit'];
                 const type = types[Math.floor(Math.random() * types.length)];
@@ -266,29 +270,29 @@
             ctx.lineWidth = 3;
             // Front suspension
             ctx.beginPath();
-            ctx.moveTo(bike.wheelBase/2, -bike.height/2);
-            ctx.lineTo(bike.wheelBase/2, bike.frontSuspension.height);
+            ctx.moveTo(bike.wheelBase / 2, -bike.height / 2);
+            ctx.lineTo(bike.wheelBase / 2, bike.frontSuspension.height);
             ctx.stroke();
             // Rear suspension
             ctx.beginPath();
-            ctx.moveTo(-bike.wheelBase/2, -bike.height/2);
-            ctx.lineTo(-bike.wheelBase/2, bike.rearSuspension.height);
+            ctx.moveTo(-bike.wheelBase / 2, -bike.height / 2);
+            ctx.lineTo(-bike.wheelBase / 2, bike.rearSuspension.height);
             ctx.stroke();
 
             // Draw bike frame
             ctx.beginPath();
             // Main body
-            ctx.moveTo(-bike.width/2, -bike.height/2);
-            ctx.lineTo(bike.width/2, -bike.height/2);
-            ctx.lineTo(bike.width/3, -bike.height);
-            ctx.lineTo(-bike.width/3, -bike.height);
+            ctx.moveTo(-bike.width / 2, -bike.height / 2);
+            ctx.lineTo(bike.width / 2, -bike.height / 2);
+            ctx.lineTo(bike.width / 3, -bike.height);
+            ctx.lineTo(-bike.width / 3, -bike.height);
             ctx.closePath();
             // Add details
             ctx.moveTo(0, -bike.height);
             ctx.lineTo(0, -bike.height - 10);  // Handlebars
-            ctx.moveTo(-bike.width/4, -bike.height/2);
-            ctx.lineTo(-bike.width/4, -bike.height*0.8);  // Engine detail
-            
+            ctx.moveTo(-bike.width / 4, -bike.height / 2);
+            ctx.lineTo(-bike.width / 4, -bike.height * 0.8);  // Engine detail
+
             ctx.fillStyle = '#FF0000';
             ctx.fill();
             ctx.strokeStyle = '#000';
@@ -300,7 +304,7 @@
                 ctx.save();
                 ctx.translate(x, y);
                 ctx.rotate(bike.wheelRotation);
-                
+
                 // Tire
                 ctx.beginPath();
                 ctx.arc(0, 0, bike.wheelRadius, 0, Math.PI * 2);
@@ -309,43 +313,43 @@
                 ctx.strokeStyle = '#000';
                 ctx.lineWidth = 4;
                 ctx.stroke();
-                
+
                 // Tread pattern
-                for(let i = 0; i < 12; i++) {
+                for (let i = 0; i < 12; i++) {
                     ctx.save();
-                    ctx.rotate(i * Math.PI/6);
+                    ctx.rotate(i * Math.PI / 6);
                     ctx.beginPath();
-                    ctx.moveTo(bike.wheelRadius-4, -2);
-                    ctx.lineTo(bike.wheelRadius-4, 2);
+                    ctx.moveTo(bike.wheelRadius - 4, -2);
+                    ctx.lineTo(bike.wheelRadius - 4, 2);
                     ctx.lineWidth = 2;
                     ctx.stroke();
                     ctx.restore();
                 }
-                
+
                 // Hub and spokes
                 ctx.beginPath();
                 ctx.arc(0, 0, 5, 0, Math.PI * 2);
                 ctx.fillStyle = '#666';
                 ctx.fill();
-                
-                for(let i = 0; i < 8; i++) {
+
+                for (let i = 0; i < 8; i++) {
                     ctx.save();
-                    ctx.rotate(i * Math.PI/4);
+                    ctx.rotate(i * Math.PI / 4);
                     ctx.beginPath();
                     ctx.moveTo(5, 0);
-                    ctx.lineTo(bike.wheelRadius-4, 0);
+                    ctx.lineTo(bike.wheelRadius - 4, 0);
                     ctx.lineWidth = 2;
                     ctx.strokeStyle = '#888';
                     ctx.stroke();
                     ctx.restore();
                 }
-                
+
                 ctx.restore();
             };
 
             // Draw both wheels
-            drawWheel(-bike.wheelBase/2, bike.rearSuspension.height);
-            drawWheel(bike.wheelBase/2, bike.frontSuspension.height);
+            drawWheel(-bike.wheelBase / 2, bike.rearSuspension.height);
+            drawWheel(bike.wheelBase / 2, bike.frontSuspension.height);
 
             ctx.restore();
         }
@@ -360,12 +364,12 @@
 
             // Draw distant mountains for parallax
             ctx.fillStyle = '#9CB4B4';
-            for(let i = 0; i < 3; i++) {
+            for (let i = 0; i < 3; i++) {
                 ctx.beginPath();
                 ctx.moveTo(0, canvas.height - 200 + i * 50);
-                for(let x = 0; x < canvas.width; x += 50) {
-                    ctx.lineTo(x, canvas.height - 200 + i * 50 + 
-                             noise(x + cameraPosX * (0.5 - i * 0.2)) * (1 + i * 0.5));
+                for (let x = 0; x < canvas.width; x += 50) {
+                    ctx.lineTo(x, canvas.height - 200 + i * 50 +
+                        noise(x + cameraPosX * (0.5 - i * 0.2)) * (1 + i * 0.5));
                 }
                 ctx.lineTo(canvas.width, canvas.height);
                 ctx.lineTo(0, canvas.height);
@@ -375,28 +379,28 @@
             // Draw terrain
             ctx.beginPath();
             terrain.segments.forEach((segment, index) => {
-                if(index === 0) {
+                if (index === 0) {
                     ctx.moveTo(segment.x - cameraPosX, segment.y);
                 }
-                
+
                 // Draw detailed terrain using curve points
                 segment.detail.forEach(point => {
                     ctx.lineTo(point.x - cameraPosX, point.y);
                 });
             });
-            
-            ctx.lineTo(terrain.segments[terrain.segments.length-1].x - cameraPosX, canvas.height);
+
+            ctx.lineTo(terrain.segments[terrain.segments.length - 1].x - cameraPosX, canvas.height);
             ctx.lineTo(0, canvas.height);
             ctx.closePath();
 
-// Create realistic ground gradient
-const groundGradient = ctx.createLinearGradient(0, canvas.height - 300, 0, canvas.height);
+            // Create realistic ground gradient
+            const groundGradient = ctx.createLinearGradient(0, canvas.height - 300, 0, canvas.height);
             groundGradient.addColorStop(0, '#4a7023');  // Dark grass
             groundGradient.addColorStop(0.2, '#5c8a2f'); // Medium grass
             groundGradient.addColorStop(0.4, '#6fa23a'); // Light grass
             groundGradient.addColorStop(0.8, '#5d4037'); // Dark soil
             groundGradient.addColorStop(1, '#3e2723');   // Deeper soil
-            
+
             ctx.fillStyle = groundGradient;
             ctx.fill();
 
@@ -442,7 +446,7 @@ const groundGradient = ctx.createLinearGradient(0, canvas.height - 300, 0, canva
             }
 
             // Speed limits and air resistance
-            bike.speed = Math.max(-bike.maxSpeed/2, Math.min(bike.maxSpeed, bike.speed));
+            bike.speed = Math.max(-bike.maxSpeed / 2, Math.min(bike.maxSpeed, bike.speed));
             bike.speed *= PHYSICS.AIR_RESISTANCE;
 
             // Position update
@@ -454,7 +458,7 @@ const groundGradient = ctx.createLinearGradient(0, canvas.height - 300, 0, canva
             if (segmentIndex >= 0 && segmentIndex < terrain.segments.length) {
                 const segment = terrain.segments[segmentIndex];
                 const nextSegment = terrain.segments[Math.min(segmentIndex + 1, terrain.segments.length - 1)];
-                
+
                 // Calculate slope angle
                 const dx = nextSegment.x - segment.x;
                 const dy = nextSegment.y - segment.y;
@@ -468,7 +472,7 @@ const groundGradient = ctx.createLinearGradient(0, canvas.height - 300, 0, canva
                     const springForce = -PHYSICS.SUSPENSION_STIFFNESS * compression;
                     const dampingForce = -PHYSICS.SUSPENSION_DAMPING * suspension.velocity;
                     const totalForce = springForce + dampingForce;
-                    
+
                     suspension.velocity += totalForce;
                     suspension.height += suspension.velocity;
                     suspension.height = Math.max(-20, Math.min(20, suspension.height));
@@ -513,7 +517,7 @@ const groundGradient = ctx.createLinearGradient(0, canvas.height - 300, 0, canva
             }
 
             // Camera follow
-            cameraPosX = bike.x - canvas.width/3;
+            cameraPosX = bike.x - canvas.width / 3;
 
             // Update stats display
             document.getElementById('speedometer').textContent = Math.abs(Math.floor(bike.speed * 10));

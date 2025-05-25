@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ultimate Bike Adventure</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="gameCanvas"></canvas>
+
+<div class="ui-container">
+    <div class="ui-left">
+        <div class="ui-stat">Score: <span id="score">0</span></div>
+        <div class="ui-stat">Combo: x<span id="combo">1</span></div>
+        <div class="ui-stat">Coins: <span id="coins">0</span></div>
+    </div>
+    <div class="ui-right">
+        <div class="ui-stat">Lives: ❤️ <span id="lives">3</span></div>
+        <div class="ui-stat">
+            Speed: <span id="speed">0</span> mph
+            <div class="speed-meter">
+                <div class="speed-bar" id="speedBar"></div>
+            </div>
+        </div>
+        <div class="ui-stat">Distance: <span id="distance">0</span>m</div>
+    </div>
+</div>
+
+<div class="combo-display" id="comboDisplay">COMBO x2!</div>
+
+<div class="game-over" id="gameOver">
+    <h2>🏁 Race Over!</h2>
+    <p>Final Score: <span id="finalScore">0</span></p>
+    <p>Distance Traveled: <span id="finalDistance">0</span>m</p>
+    <p>Coins Collected: <span id="finalCoins">0</span></p>
+    <button class="restart-btn" onclick="restartGame()">🏍️ Race Again</button>
+</div>
+
+<div class="instructions">
+    <div><strong>🏍️ Controls:</strong></div>
+    <div>↑ Accelerate | ↓ Brake/Reverse | ← → Lean & Steer</div>
+    <div>SPACE Bar: Turbo Boost | Hold ↑ + SPACE: Super Jump</div>
+    <div><strong>🎯 Collect:</strong> Coins, Fuel, Power-ups | <strong>⚠️ Avoid:</strong> Obstacles</div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
