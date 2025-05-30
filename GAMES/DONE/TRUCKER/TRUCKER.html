@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Realistic Bike Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="gameStats">
+        Speed: <span id="speedometer">0</span> km/h<br>
+        Distance: <span id="distance">0</span>m<br>
+        Score: <span id="score">0</span><br>
+        Gear: <span id="gear">1</span><br>
+        Time: <span id="gameTime">00:00</span><br>
+        Money: $<span id="money">0</span>
+    </div>
+
+    <div id="fuelBar">
+        <div id="fuelFill" style="width: 100%;"></div>
+    </div>
+    <div id="healthBar">
+        <div id="healthFill" style="width: 100%;"></div>
+    </div>
+
+    <div id="weather">
+        <span id="weatherCondition">Clear</span><br>
+        Visibility: <span id="visibility">100%</span>
+    </div>
+
+    <canvas id="miniMap"></canvas>
+
+    <div id="gameMenu">
+        <h2>Game Paused</h2>
+        <button onclick="resumeGame()">Resume</button>
+        <button onclick="restartGame()">Restart</button>
+        <div style="margin-top: 20px;">
+            <h3>Upgrades</h3>
+            <button onclick="buyUpgrade('engine')">Engine Upgrade ($500)</button><br>
+            <button onclick="buyUpgrade('suspension')">Suspension Upgrade ($300)</button><br>
+            <button onclick="buyUpgrade('fuel')">Fuel Tank Upgrade ($200)</button><br>
+            <button onclick="buyUpgrade('tires')">Better Tires ($150)</button>
+        </div>
+    </div>
+
+    <canvas id="gameCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

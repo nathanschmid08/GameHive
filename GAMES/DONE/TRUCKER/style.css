@@ -1,0 +1,122 @@
+body {
+    margin: 0;
+    background: #1a1a1a;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+canvas {
+    display: block;
+}
+
+#gameStats {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 18px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #444;
+}
+
+#gameMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid #666;
+    display: none;
+}
+
+#gameMenu button {
+    background: #4a7023;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#gameMenu button:hover {
+    background: #5c8a2f;
+}
+
+#fuelBar, #healthBar {
+    position: absolute;
+    right: 20px;
+    width: 200px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #444;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#fuelBar {
+    top: 20px;
+}
+
+#healthBar {
+    top: 50px;
+}
+
+#fuelFill, #healthFill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+#fuelFill {
+    background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44);
+}
+
+#healthFill {
+    background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44);
+}
+
+#miniMap {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 200px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #444;
+    border-radius: 10px;
+}
+
+#weather {
+    position: absolute;
+    top: 20px;
+    right: 250px;
+    color: white;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.achievement {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+    background: rgba(255, 215, 0, 0.9);
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    transform: translateX(300px);
+    transition: transform 0.5s ease;
+}
+
+.achievement.show {
+    transform: translateX(0);
+}
