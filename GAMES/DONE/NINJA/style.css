@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap');
+body { 
+    margin: 0; 
+    overflow: hidden; 
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f0f23);
+    font-family: 'Cinzel', serif;
+    color: #e6e6fa;
+}
+canvas { 
+    display: block; 
+    margin: 0 auto; 
+    background: linear-gradient(180deg, #2d1b69, #1a1a2e, #0f0f23);
+    border: 3px solid #8b4513;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+.ui {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 100;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    color: #ffd700;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #8b4513;
+}
+.controls {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 14px;
+    color: #e6e6fa;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #8b4513;
+}
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(145deg, rgba(139, 69, 19, 0.9), rgba(160, 82, 45, 0.9));
+    padding: 30px;
+    border-radius: 15px;
+    border: 3px solid #ffd700;
+    text-align: center;
+    font-size: 20px;
+    display: none;
+    z-index: 200;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.5);
+    color: #ffd700;
+}
+.title {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
