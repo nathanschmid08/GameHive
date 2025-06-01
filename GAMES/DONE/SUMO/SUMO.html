@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Enhanced Sumo Wrestling Championship</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hud">
+  <div>Score: <span id="score">0</span></div>
+  <div>Round: <span id="round">1</span></div>
+  <div>Enemies: <span id="enemies">4</span></div>
+</div>
+<div class="power-meter">
+  <div class="power-fill" id="powerFill" style="width: 0%"></div>
+</div>
+<div class="controls">
+  🖱️ Drag & Release to Launch | 🎯 Push enemies out of the ring!
+</div>
+<canvas id="game" width="800" height="600"></canvas>
+
+<script src="script.js"></script>
+</body>
+</html>

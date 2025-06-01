@@ -1,0 +1,54 @@
+html,
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+canvas {
+    display: block;
+    margin: auto;
+    background: radial-gradient(circle at center, #8B4513, #654321);
+    border: 4px solid #DAA520;
+    box-shadow: 0 0 30px rgba(218, 165, 32, 0.5);
+}
+
+.hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.power-meter {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: 20px;
+    border: 2px solid white;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
+.power-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000);
+    border-radius: 8px;
+    transition: width 0.1s;
+}
