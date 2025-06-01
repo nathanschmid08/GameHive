@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Enhanced 2D Shooter</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" width="1000" height="700"></canvas>
+<canvas id="minimap" class="minimap" width="150" height="100"></canvas>
+
+<div class="ui">
+  <div>Score: <span id="score">0</span></div>
+  <div>Health: <span id="health">100</span></div>
+  <div>Level: <span id="level">1</span></div>
+  <div>Enemies: <span id="enemies">0</span></div>
+</div>
+
+<div class="game-over" id="gameOver">
+  <h2>GAME OVER</h2>
+  <p>Final Score: <span id="finalScore">0</span></p>
+  <p>Level Reached: <span id="finalLevel">1</span></p>
+  <button onclick="restartGame()">Play Again</button>
+</div>
+
+<div class="controls">
+  WASD: Move | Mouse: Aim | Click: Shoot | Collect power-ups!
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
