@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    color: white;
+}
+
+canvas {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #444;
+}
+
+.weapon-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    text-align: right;
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid #ff0000;
+    text-align: center;
+    display: none;
+    z-index: 200;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+}
+
+.restart-btn {
+    background: #ff0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.restart-btn:hover {
+    background: #cc0000;
+}
+
+.controls {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}

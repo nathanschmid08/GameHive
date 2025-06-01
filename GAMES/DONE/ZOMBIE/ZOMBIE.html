@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Enhanced Zombie Survival</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="hud">
+    <div>💀 Score: <span id="score">0</span></div>
+    <div>❤️ Health: <span id="health">100</span>%</div>
+    <div>🌊 Wave: <span id="wave">1</span></div>
+    <div>🧟 Zombies: <span id="zombies">0</span></div>
+  </div>
+  
+  <div class="weapon-info">
+    <div>🔫 Weapon: <span id="weapon">Pistol</span></div>
+    <div>📦 Ammo: <span id="ammo">∞</span></div>
+    <div>⚡ Fire Rate: <span id="firerate">Normal</span></div>
+  </div>
+  
+  <div class="controls">
+    WASD/Arrows: Move | Mouse: Aim & Shoot | Space: Restart when dead
+  </div>
+  
+  <div class="game-over" id="gameOver">
+    <h2>💀 GAME OVER 💀</h2>
+    <p>Final Score: <span id="finalScore">0</span></p>
+    <p>Wave Reached: <span id="finalWave">1</span></p>
+    <p>Zombies Killed: <span id="zombiesKilled">0</span></p>
+    <button class="restart-btn" onclick="restartGame()">Play Again</button>
+  </div>
+
+  <canvas id="game" width="1200" height="700"></canvas>
+  
+  <script src="script.js"></script>
+</body>
+</html>
