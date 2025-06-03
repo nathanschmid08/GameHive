@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+    color: #fff;
+    font-family: 'Orbitron', monospace;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: backgroundShift 20s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); }
+}
+
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 20px 0;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: rainbowShift 3s ease-in-out infinite;
+    text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+}
+
+@keyframes rainbowShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+#gameContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    position: relative;
+}
+
+#game {
+    width: 400px;
+    height: 600px;
+    background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    box-shadow: 
+        0 0 50px rgba(78, 205, 196, 0.3),
+        inset 0 0 50px rgba(255, 255, 255, 0.1);
+    background-clip: padding-box;
+}
+
+#game::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+    border-radius: 20px;
+    z-index: -1;
+    animation: borderGlow 2s linear infinite;
+}
+
+@keyframes borderGlow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.road-line {
+    position: absolute;
+    width: 4px;
+    height: 40px;
+    background: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    animation: roadMove 0.5s linear infinite;
+}
+
+@keyframes roadMove {
+    0% { top: -40px; }
+    100% { top: 600px; }
+}
+
+#player {
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    bottom: 20px;
+    left: 175px;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border-radius: 25px 25px 5px 5px;
+    box-shadow: 
+        0 0 20px rgba(255, 65, 108, 0.6),
+        inset 0 -10px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.1s ease;
+    z-index: 10;
+}
+
+#player::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#player::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 5px;
+    right: 5px;
+    height: 8px;
+    background: linear-gradient(90deg, #333, #666, #333);
+    border-radius: 4px;
+}
+
+.enemy {
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    top: -80px;
+    border-radius: 25px 25px 5px 5px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transition: all 0.1s ease;
+}
+
+.enemy.type1 {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.enemy.type2 {
+    background: linear-gradient(45deg, #00d4ff, #00a8cc);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+.enemy.type3 {
+    background: linear-gradient(45deg, #ff6b35, #f7931e);
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.6);
+}
+
+.enemy::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.enemy::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 5px;
+    right: 5px;
+    height: 8px;
+    background: linear-gradient(90deg, #333, #666, #333);
+    border-radius: 4px;
+}
+
+.hud {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+    z-index: 20;
+}
+
+.score, .speed, .level {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 2px solid rgba(78, 205, 196, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.speed-boost {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #00ff88, #00cc6a);
+    border-radius: 50%;
+    top: -30px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.explosion {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.8) 0%, rgba(255, 140, 0, 0.6) 30%, transparent 70%);
+    border-radius: 50%;
+    animation: explode 0.5s ease-out;
+    pointer-events: none;
+    z-index: 15;
+}
+
+@keyframes explode {
+    0% { transform: scale(0.5); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px solid #ff6b6b;
+    box-shadow: 0 0 50px rgba(255, 107, 107, 0.5);
+    backdrop-filter: blur(20px);
+    text-align: center;
+    z-index: 30;
+}
+
+.game-over h2 {
+    font-size: 2.5rem;
+    color: #ff6b6b;
+    margin-bottom: 20px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px #ff6b6b; }
+    to { text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b; }
+}
+
+.restart-btn {
+    background: linear-gradient(45deg, #4ecdc4, #44a08d);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(78, 205, 196, 0.5);
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #4ecdc4;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFloat 2s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-100px) scale(0); }
+}
+
+.instructions {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 25px;
+    border-radius: 10px;
+    border: 2px solid rgba(78, 205, 196, 0.3);
+    backdrop-filter: blur(10px);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    #game { width: 300px; height: 500px; }
+    .hud { font-size: 1rem; }
+    .game-over h2 { font-size: 2rem; }
+}
