@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tower Defense</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Tower Defense</h1>
+  
+  <div class="wave-info" id="waveInfo">Wave 1 - Enemies: 0/5</div>
+  
+  <div class="game-container">
+    <canvas id="gameCanvas" width="800" height="500"></canvas>
+    
+    <div class="ui-panel">
+      <h3>Resources</h3>
+      <div class="stat">
+        <span>Money:</span>
+        <span id="moneyDisplay">$150</span>
+      </div>
+      <div class="stat">
+        <span>Lives:</span>
+        <span id="livesDisplay">20</span>
+      </div>
+      <div class="stat">
+        <span>Score:</span>
+        <span id="scoreDisplay">0</span>
+      </div>
+      
+      <div class="tower-shop">
+        <h3>Tower Shop</h3>
+        <button class="tower-btn" id="basicTower">
+          Basic Tower - $50<br>
+          <small>Damage: 1, Range: 100</small>
+        </button>
+        <button class="tower-btn" id="sniperTower">
+          Sniper Tower - $100<br>
+          <small>Damage: 3, Range: 200</small>
+        </button>
+        <button class="tower-btn" id="rapidTower">
+          Rapid Tower - $80<br>
+          <small>Damage: 1, Fast Fire</small>
+        </button>
+        <button class="tower-btn" id="freezeTower">
+          Freeze Tower - $120<br>
+          <small>Slows enemies</small>
+        </button>
+      </div>
+      
+      <div class="upgrade-panel" id="upgradePanel">
+        <h3>Upgrade Tower</h3>
+        <div id="towerStats"></div>
+        <button class="upgrade-btn" id="upgradeDamage">Upgrade Damage - $30</button>
+        <button class="upgrade-btn" id="upgradeRange">Upgrade Range - $25</button>
+        <button class="upgrade-btn" id="upgradeSpeed">Upgrade Speed - $35</button>
+        <button class="upgrade-btn" id="sellTower">Sell Tower</button>
+      </div>
+      
+      <div class="controls">
+        <button class="control-btn" id="startWave">Start Wave</button>
+        <button class="control-btn" id="pauseGame">Pause</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h1 {
+    margin: 10px 0;
+    color: #4a9eff;
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.5);
+}
+
+.game-container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+canvas {
+    background: linear-gradient(45deg, #2d3748, #1a202c);
+    border: 2px solid #4a9eff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+.ui-panel {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #4a9eff;
+    min-width: 200px;
+}
+
+.stat {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    padding: 5px;
+    background: rgba(74, 158, 255, 0.1);
+    border-radius: 4px;
+}
+
+.tower-shop {
+    margin-top: 20px;
+}
+
+.tower-btn {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+    background: linear-gradient(45deg, #4a9eff, #357abd);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.tower-btn:hover {
+    background: linear-gradient(45deg, #357abd, #2c5aa0);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(74, 158, 255, 0.4);
+}
+
+.tower-btn:disabled {
+    background: #555;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.selected {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52) !important;
+}
+
+.upgrade-panel {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 107, 107, 0.1);
+    border-radius: 4px;
+    display: none;
+}
+
+.upgrade-btn {
+    width: 100%;
+    margin: 5px 0;
+    padding: 6px;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 11px;
+}
+
+.wave-info {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 18px;
+    color: #4a9eff;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.control-btn {
+    margin: 5px;
+    padding: 8px 15px;
+    background: linear-gradient(45deg, #28a745, #20c997);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+}
